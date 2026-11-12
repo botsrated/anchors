@@ -1,0 +1,40 @@
+name: anchor
+# Copies each finalized BotsRated anchor here (checked first), then upgrades pending OpenTimestamps proofs
+# once Bitcoin confirms. Uses only the built-in GITHUB_TOKEN; no secrets.
+on:
+  schedule:
+    - cron: "50 */3 * * *"   # 00:50, 03:50, ... UTC: the first run after each UTC midnight is 00:50
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: anchor
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install OpenTimestamps client
+        run: pip install opentimestamps-client
+      - name: Copy new final anchors (verified)
+        run: python3 scripts/sync.py
+      - name: Upgrade pending OpenTimestamps proofs
+        run: |
+          shopt -s nullglob
+          for f in proofs/*.ots; do
+            if ots info "$f" | grep -q "PendingAttestation"; then ots upgrade "$f" || true; fi
+          done
+          rm -f proofs/*.ots.bak
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "anchor: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
