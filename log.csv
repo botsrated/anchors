@@ -1,1 +1,2 @@
 day,leaf_count,merkle_root,anchor,prev_anchor,committed_at
+genesis,400931,83c7cf3961a0d50074182fd97fcd17c82e7c30c2f0b89425482db8df334528f5,4430620a4edbdbe1c69dfbe455a5a8ae021d8436f48e1f76f646b81c96192879,,2026-11-12T23:56:09Z
