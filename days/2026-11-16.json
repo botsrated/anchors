@@ -1,0 +1,52 @@
+{
+  "v": "botsrated-anchor-1",
+  "day": "2026-11-16",
+  "leaf_count": 1453,
+  "merkle_root": "bca684826a04e5e665dac9610b688359470f3f49fb7e9f30a8c78c167bc6510d",
+  "prev_anchor": "56bee4b7bef7713648ca8fb3451f8d1ec1c88f98ea518f64052471b6c1913828",
+  "anchor": "b3d3b250de5e87cce8e6f323f033563f3bb47a1999d36d92853386aa0c549a1b",
+  "status": "final",
+  "prev_day": "2026-11-15",
+  "sources": {
+    "x402_manifest": {
+      "key": "receipts/2026-11-16/manifest.json",
+      "sha256": "439eb745247c37714941615a5fbf0b1f2744e1ad1f5751a191050dc317e75ce7",
+      "receipts": 179057,
+      "parts": 43
+    },
+    "mcp_manifest": {
+      "key": "mcp-receipts/2026-11-16/manifest.json",
+      "sha256": "adfc5f543d72e67037068b2844620a8d70f5fa0aacc75a626d7bc7a915c8b2c4",
+      "receipts": 40939,
+      "parts": 82
+    },
+    "receipt": 0,
+    "self_status": 1450,
+    "seller_claim": 1,
+    "seller_statement": 0,
+    "seller_selfcheck": 0,
+    "team_decision": 0
+  },
+  "computed_at": "2026-11-17T12:23:11.937Z",
+  "finalized_at": "2026-11-17T12:23:11.937Z",
+  "notes": [],
+  "leaves_url": "https://botsrated.com/v1/anchor/2026-11-16/leaves",
+  "rules": {
+    "leaf": "sha256 of the canonical JSON (keys sorted, no whitespace, sig included) of each signed record whose own timestamp falls in this UTC day; for the bulk probe archives, of the signed daily manifest, which holds the sha256 of every archive part",
+    "order": "leaves sorted by (s, id, h)",
+    "tree": "RFC 6962 Merkle tree hash over the 32-byte leaf hashes: leaf node sha256(0x00||h), inner node sha256(0x01||left||right); empty tree = sha256 of empty input",
+    "anchor": "sha256 of canonical JSON {v, day, leaf_count, merkle_root, prev_anchor}; prev_anchor is the previous day's anchor, or the genesis anchor for the first day of the series",
+    "public_copy": "https://github.com/botsrated/anchors"
+  },
+  "opentimestamps": {
+    "status": "submitted to calendars; Bitcoin confirmation pending (upgraded copies live in the public repo)",
+    "calendars": [
+      "https://a.pool.opentimestamps.org",
+      "https://b.pool.opentimestamps.org",
+      "https://a.pool.eternitywall.com"
+    ],
+    "stamped_at": "2026-11-17T12:23:21.974Z",
+    "proof_url": "https://botsrated.com/v1/anchor/2026-11-16/anchor.ots",
+    "stamped_file_url": "https://botsrated.com/v1/anchor/2026-11-16/head.json"
+  }
+}
