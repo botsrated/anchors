@@ -1,0 +1,76 @@
+{
+  "v": "botsrated-anchor-1",
+  "day": "2026-11-20",
+  "leaf_count": 1452,
+  "merkle_root": "7c1f590c479b9ddf91b5f538a6fc96a18fe98a100739fd34282ee6b9276a4a49",
+  "prev_anchor": "a7b910e3b48fe1de0cb8102de22579c57b248ff1ad616dc21ffdc8c23e3b549e",
+  "anchor": "1deed606b14904c7eba138046ebca9fccca3236dc4a6695d1534aec9a8932d34",
+  "status": "final",
+  "prev_day": "2026-11-19",
+  "prev_status": "final",
+  "sources": {
+    "x402_manifest": {
+      "key": "receipts/2026-11-20/manifest.json",
+      "sha256": "f9bfafc06afabb9a85decbe43498c1d39bea22c6a4cd3aaf83dc23d20dc310a5",
+      "receipts": 175319,
+      "parts": 44,
+      "generated_at": "2026-11-21T03:51:08.718Z"
+    },
+    "mcp_manifest": {
+      "key": "mcp-receipts/2026-11-20/manifest.json",
+      "sha256": "2d5fedc4236e1bbe7bfbfda9c09b0968c942234d710bc1aee03a43272bea2aaa",
+      "receipts": 43386,
+      "parts": 87,
+      "generated_at": "2026-11-21T13:17:08.718Z"
+    },
+    "receipt": 0,
+    "self_status": 1440,
+    "seller_claim": 10,
+    "seller_statement": 0,
+    "seller_selfcheck": 0,
+    "team_decision": 0
+  },
+  "computed_at": "2026-11-21T13:23:13.105Z",
+  "finalized_at": "2026-11-21T13:23:13.105Z",
+  "notes": [
+    "finalized late: 13.4 h after the UTC day closed (2026-11-21T00:00:00.000Z), at 2026-11-21T13:23:13.105Z, after waiting for mcp-receipts/2026-11-20/manifest.json. Nothing was backdated: computed_at and finalized_at are the real time of this computation, and the last archive manifest it includes was generated at 2026-11-21T13:17:08.718Z."
+  ],
+  "leaves_url": "https://botsrated.com/v1/anchor/2026-11-20/leaves",
+  "rules": {
+    "leaf": "sha256 of the canonical JSON (keys sorted, no whitespace, sig included) of each signed record whose own timestamp falls in this UTC day; for the bulk probe archives, of the signed daily manifest, which holds the sha256 of every archive part",
+    "order": "leaves sorted by (s, id, h)",
+    "tree": "RFC 6962 Merkle tree hash over the 32-byte leaf hashes: leaf node sha256(0x00||h), inner node sha256(0x01||left||right); empty tree = sha256 of empty input",
+    "anchor": "sha256 of canonical JSON {v, day, leaf_count, merkle_root, prev_anchor}; prev_anchor is the previous day's anchor, or the genesis anchor for the first day of the series",
+    "public_copy": "https://github.com/botsrated/anchors"
+  },
+  "closed_at": "2026-11-21T00:00:00.000Z",
+  "finalize_lag_hours": 13.4,
+  "finalized_late": true,
+  "finalize_delayed": {
+    "waiting_for": [
+      "mcp-receipts/2026-11-20/manifest.json"
+    ],
+    "first_checked_at": "2026-11-21T01:23:08.618Z",
+    "last_checked_at": "2026-11-21T12:23:08.618Z"
+  },
+  "superseded_partial": {
+    "computed_at": "2026-11-20T23:23:16.126Z",
+    "anchor": "f852f5b1c20ba049d05de5689bcd81fe749274ebd5290dcc92b6ed624ef51871",
+    "leaf_count": 1407,
+    "merkle_root": "c105993d7c098c236f4663835bc278f0f4661002dfc623e723d447584d7dafcb",
+    "prev_anchor": "a7b910e3b48fe1de0cb8102de22579c57b248ff1ad616dc21ffdc8c23e3b549e",
+    "note": "the last partial root published for this day before it was finalized, unchanged; its leaves stay at leaves_partial_url"
+  },
+  "leaves_partial_url": "https://botsrated.com/v1/anchor/2026-11-20/leaves.partial",
+  "opentimestamps": {
+    "status": "submitted to calendars; Bitcoin confirmation pending (upgraded copies live in the public repo)",
+    "calendars": [
+      "https://a.pool.opentimestamps.org",
+      "https://b.pool.opentimestamps.org",
+      "https://a.pool.eternitywall.com"
+    ],
+    "stamped_at": "2026-11-21T13:23:23.278Z",
+    "proof_url": "https://botsrated.com/v1/anchor/2026-11-20/anchor.ots",
+    "stamped_file_url": "https://botsrated.com/v1/anchor/2026-11-20/head.json"
+  }
+}
