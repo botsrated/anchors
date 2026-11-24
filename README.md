@@ -38,3 +38,14 @@ ots verify proofs/2026-11-12.head.json.ots      # Bitcoin timestamp (needs a Bit
 ```
 
 To check a record you hold: hash its canonical JSON and look for the hash in that day's leaves.
+
+## Workflow pins
+
+The `anchor` workflow can write to this repository, so what it runs is pinned:
+
+- `actions/checkout` and `actions/setup-python` are pinned to a commit, not a moving tag.
+- `opentimestamps-client` is pinned to an exact version (`0.8.0`). Its own dependencies are not hash-locked yet. To lock them, run `pip-compile --generate-hashes` on a machine with pip and switch the install step to `pip install --require-hashes -r requirements.txt`.
+- The commit step adds only `days/`, `leaves/`, `proofs/`, `genesis/` and `log.csv`. A change anywhere else is reported as a warning in the run and is not committed.
+- `scripts/sync.py` accepts a day name from the index only when it is exactly `YYYY-MM-DD`, before it is used in a URL or a file path.
+
+To update a pin, change it in `.github/workflows/anchor.yml` in a pull request.
