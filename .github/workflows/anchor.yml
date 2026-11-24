@@ -4,6 +4,9 @@ name: anchor
 on:
   schedule:
     - cron: "50 */3 * * *"   # 00:50, 03:50, ... UTC: the first run after each UTC midnight is 00:50
+    # Daily catch-up after a day typically turns final (~11:23 UTC). GitHub's every-3-hours
+    # timer has been drifting far off :50 and can skip a slot (seen 24 Nov 2026).
+    - cron: "30 12 * * *"    # 12:30 UTC (6:30 AM CT in winter)
   workflow_dispatch: {}
 permissions:
   contents: write

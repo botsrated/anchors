@@ -3,6 +3,10 @@
 Daily Merkle roots over the hashes of BotsRated's signed records, copied here by a scheduled GitHub Actions
 workflow and stamped with [OpenTimestamps](https://opentimestamps.org) (Bitcoin).
 
+The workflow runs every three hours at :50 UTC (`50 */3 * * *`) and also once a day at 12:30 UTC
+(`30 12 * * *`), after a day typically turns final (~11:23 UTC). GitHub's scheduled runs can drift or skip a
+slot; if a day is missing, run the `anchor` workflow by hand (Actions → Run workflow).
+
 What this shows: a record whose hash is in a day's leaves existed no later than that day's commit here and
 its Bitcoin timestamp. It does not show that the record's contents are correct.
 
