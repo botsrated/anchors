@@ -6,13 +6,19 @@ head.json (the exact bytes the OpenTimestamps proof stamps; sha256(head.json) ==
 .ots proof; recompute the Merkle root and anchor; refuse to write anything that does not match.
 Standard library only. Run by .github/workflows/anchor.yml with the built-in GITHUB_TOKEN.
 """
-import hashlib, json, os, sys, urllib.request, datetime
+import hashlib, json, os, re, sys, urllib.request, datetime
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from verify import canon, mth
 
 BASE = os.environ.get("ANCHOR_BASE", "https://botsrated.com/v1/anchor")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 H = lambda b: hashlib.sha256(b).digest()
+DAY = re.compile(r"\d{4}-\d{2}-\d{2}\Z")
+
+def check_day(day):
+    """A day name from the index goes into URLs and file paths, so it must be exactly YYYY-MM-DD."""
+    if not isinstance(day, str) or not DAY.match(day): raise SystemExit(f"index names a day that is not YYYY-MM-DD: {day!r}")
+    return day
 
 def raw(url):
     req = urllib.request.Request(url, headers={"user-agent": "botsrated-anchors-sync/1 (+https://github.com/botsrated/anchors)"})
@@ -33,6 +39,7 @@ def head_of(doc):
     return canon({k: doc[k] for k in ("v", "day", "leaf_count", "merkle_root", "prev_anchor")})
 
 def take(day, doc, leaves_files):
+    if day != "genesis": check_day(day)
     head = head_of(doc).encode()
     if H(head).hex() != doc["anchor"]: raise SystemExit(f"{day}: anchor != sha256(head)")
     served_head = raw(f"{BASE}/{day}/head.json")
@@ -68,6 +75,7 @@ def main():
     prev = None
     for d in idx["days"]:
         if d["status"] != "final": continue
+        check_day(d["day"])
         if have(d["day"]):
             prev = json.load(open(os.path.join(ROOT, "days", d["day"] + ".json")))
             continue
