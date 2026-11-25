@@ -5,7 +5,9 @@ name: ofac
 # Uses only the built-in GITHUB_TOKEN; no secrets.
 on:
   schedule:
-    - cron: "17 */6 * * *"   # 00:17, 06:17, 12:17, 18:17 UTC
+    # 10 off-peak slots/day across odd minutes so dropped GitHub cron runs cannot breach the 48 h TTL.
+    - cron: "11 */4 * * *"      # 00:11, 04:11, 08:11, 12:11, 16:11, 20:11 UTC
+    - cron: "41 1,7,13,19 * * *" # 01:41, 07:41, 13:41, 19:41 UTC
   workflow_dispatch: {}
 permissions:
   contents: write
