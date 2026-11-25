@@ -53,3 +53,6 @@ The `anchor` workflow can write to this repository, so what it runs is pinned:
 - `scripts/sync.py` accepts a day name from the index only when it is exactly `YYYY-MM-DD`, before it is used in a URL or a file path.
 
 To update a pin, change it in `.github/workflows/anchor.yml` in a pull request.
+
+## OFAC mirror (branch `ofac-data`)
+`.github/workflows/ofac.yml` copies the digital currency addresses from the U.S. Treasury OFAC SDN list to the separate branch [`ofac-data`](https://github.com/botsrated/anchors/tree/ofac-data) every 6 hours. The BotsRated test-buy Worker screens every payee against it before paying (Treasury does not answer Cloudflare egress) and refuses to pay when the copy is older than 48 hours. It does not change the anchor data on `main`.
