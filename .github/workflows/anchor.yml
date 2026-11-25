@@ -4,9 +4,11 @@ name: anchor
 on:
   schedule:
     - cron: "50 */3 * * *"   # 00:50, 03:50, ... UTC: the first run after each UTC midnight is 00:50
-    # Daily catch-up after a day typically turns final (~11:23 UTC). GitHub's every-3-hours
-    # timer has been drifting far off :50 and can skip a slot (seen 24 Nov 2026).
+    # Staggered off-peak schedule so GitHub Actions cron congestion at :50/:30 does not drop days.
+    - cron: "13 */3 * * *"   # 01:13, 04:13, 07:13, 10:13, 13:13, 16:13, 19:13, 22:13 UTC
+    # Daily catch-up after a day typically turns final (~11:23 / 12:23 UTC).
     - cron: "30 12 * * *"    # 12:30 UTC (6:30 AM CT in winter)
+    - cron: "7 13,15 * * *"  # 13:07, 15:07 UTC (7:07 AM, 9:07 AM CT) off-peak post-finalize catch-up
   workflow_dispatch: {}
 permissions:
   contents: write
