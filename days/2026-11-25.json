@@ -1,0 +1,89 @@
+{
+  "v": "botsrated-anchor-3",
+  "day": "2026-11-25",
+  "leaf_count": 8702,
+  "merkle_root": "cc842d9109296a6efddf38727412b929adc17577831e6d7b820930783ba1300f",
+  "prev_anchor": "edc64c3ded02c1448fda8b42fb729d99c36e216f19f4de294ede26e9529fc6e7",
+  "anchor": "bdf1301a88e3ff3ffc2727736754e747ba06912f148ea5cd51cffe7943d172ef",
+  "status": "final",
+  "prev_day": "2026-11-24",
+  "prev_status": "final",
+  "sources": {
+    "x402_manifest": {
+      "key": "receipts/2026-11-25/manifest.json",
+      "sha256": "f2dc58d5a6ec6e578249726fa3e037d5f16de39994967c0110aa759f4049cf1c",
+      "generated_at": "2026-11-26T04:41:08.000Z"
+    },
+    "mcp_manifest": {
+      "key": "mcp-receipts/2026-11-25/manifest.json",
+      "sha256": "84da720a1b02503a2e6d28f69ea5958bfe9361ee69b5f3b5967f6e3f1ee2858a",
+      "generated_at": "2026-11-26T12:21:08.000Z"
+    },
+    "late_cover": {
+      "key": "late-cover/2026-11-25/index.json",
+      "sha256": "bda33d9da0097c349353ba2397aaac1aa2d06870fd7855aac3edd9ce94f55a46"
+    },
+    "receipt": true,
+    "self_status": true,
+    "seller_claim": true,
+    "seller_statement": false,
+    "seller_selfcheck": false,
+    "team_decision": false,
+    "daily_aggregate": true,
+    "feed_page": true,
+    "mpp_manifest": {
+      "key": "mpp-receipts/2026-11-25/manifest.json",
+      "sha256": "e16f84aa5451c361900130f1249c6c982f3cd841405969dfb42759e4cee29e1e"
+    },
+    "rail_manifest": true
+  },
+  "computed_at": "2026-11-26T12:23:16.092Z",
+  "finalized_at": "2026-11-26T12:23:16.092Z",
+  "notes": [
+    "finalized late: 12.4 h after the UTC day closed (2026-11-26T00:00:00.000Z), at 2026-11-26T12:23:16.092Z, after waiting for mcp-receipts/2026-11-25/manifest.json. Nothing was backdated: computed_at and finalized_at are the real time of this computation, and the last archive manifest it includes was generated at 2026-11-26T12:21:08.000Z."
+  ],
+  "leaves_url": "https://botsrated.com/v1/anchor/2026-11-25/leaves",
+  "rules": {
+    "leaf": "sha256 of the canonical JSON (keys sorted, no whitespace, sig included) of each signed record whose own timestamp falls in this UTC day; for the bulk probe archives, of the signed daily manifest, which holds the sha256 of every archive part",
+    "order": "leaves sorted by (s, id, h)",
+    "tree": "RFC 6962 Merkle tree hash over the 32-byte leaf hashes: leaf node sha256(0x00||h), inner node sha256(0x01||left||right); empty tree = sha256 of empty input",
+    "anchor": "sha256 of canonical JSON {v, day, leaf_count, merkle_root, prev_anchor}; prev_anchor is the previous day's anchor, or the genesis anchor for the first day of the series",
+    "public_copy": "https://github.com/botsrated/anchors",
+    "daily_aggregate": "from DAILY_AGG_FROM on, a final day also has one leaf per host: sha256 of the canonical JSON of that host's signed daily aggregate for the day (source daily_aggregate, id host|day). Its assets_seen and networks_seen fields record which stablecoin and network each host's payment requests named that day. Partial roots leave these leaves out.",
+    "feed_page": "from FEED_ANCHOR_FROM on (v botsrated-anchor-2), a final day also has one leaf per non-empty UTC hour of the signed event feed in R2 (feed/v1/pages/YYYY-MM-DDTHH.json): sha256 of the canonical JSON of that hourly page (source feed_page, id YYYY-MM-DDTHH). Partial roots leave these leaves out.",
+    "mpp_manifest": "from RAILS_ANCHOR_FROM on (v botsrated-anchor-3), a final day also has one leaf for the signed MPP challenge-check archive manifest of that UTC day (KV mpp-receipts/<day>/manifest.json), which holds the sha256 of every archive part: sha256 of its canonical JSON (source mpp_manifest). Partial roots leave it out.",
+    "rail_manifest": "from RAILS_ANCHOR_FROM on (v botsrated-anchor-3), a final day also has one leaf per new-rail daily manifest that exists when the day is finalized (R2 rails/<rail>/v1/days/<day>/manifest.json and the x402 per-network rollup-manifest.json): sha256 of its canonical JSON (source rail_manifest, id = R2 key). A manifest written after its day was finalized is never added to that day; it can only enter a later root as a late cover. Partial roots leave these leaves out.",
+    "late_cover": "a final or partial day may hold one leaf for a late-cover batch made that UTC day: sha256 of the bytes of /archive/late-cover/<day>/index.json, which lists per-day Merkle roots over signed records an earlier daily root left out (anchored late, not on their original days)"
+  },
+  "closed_at": "2026-11-26T00:00:00.000Z",
+  "finalize_lag_hours": 12.4,
+  "finalized_late": true,
+  "finalize_delayed": {
+    "waiting_for": [
+      "mcp-receipts/2026-11-25/manifest.json"
+    ],
+    "first_checked_at": "2026-11-26T01:23:08.000Z",
+    "last_checked_at": "2026-11-26T11:23:08.000Z"
+  },
+  "superseded_partial": {
+    "computed_at": "2026-11-25T18:23:11.089Z",
+    "anchor": "1528b87dc9eaeef56e2ce7b7b2387f6dd7f36deb74c17ee495c4d7df48814097",
+    "leaf_count": 1257,
+    "merkle_root": "b78f95565b5d65ed7c7f64c2620249ad146b1ed45aa6bce1900adb6dd75c7829",
+    "prev_anchor": "edc64c3ded02c1448fda8b42fb729d99c36e216f19f4de294ede26e9529fc6e7",
+    "note": "the last partial root published for this day before it was finalized, unchanged; its leaves stay at leaves_partial_url"
+  },
+  "leaves_partial_url": "https://botsrated.com/v1/anchor/2026-11-25/leaves.partial",
+  "sources_note": "Per-source record counts are not published. Each source shows whether it had records that day; leaf_count (part of the hashed head) is the number of leaves.",
+  "opentimestamps": {
+    "status": "submitted to calendars; Bitcoin confirmation pending (upgraded copies live in the public repo)",
+    "calendars": [
+      "https://a.pool.opentimestamps.org",
+      "https://b.pool.opentimestamps.org",
+      "https://a.pool.eternitywall.com"
+    ],
+    "stamped_at": "2026-11-26T12:23:22.480Z",
+    "proof_url": "https://botsrated.com/v1/anchor/2026-11-25/anchor.ots",
+    "stamped_file_url": "https://botsrated.com/v1/anchor/2026-11-25/head.json"
+  }
+}
